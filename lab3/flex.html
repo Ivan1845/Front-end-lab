@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Layout</title>
+    <style>
+        /* Загальні стилі */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            height: 80vh;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Верхній зелений блок */
+        .header {
+            background-color: #8df5a2;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Середній блок */
+        .middle {
+            flex: 2;
+            display: flex;
+        }
+
+        .left {
+            background-color: #9eaefc;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .center {
+            background-color: #b8e3f9;
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Нижній жовтий блок */
+        .footer {
+            background-color: #ffed9e;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Img.</div>
+        <div class="middle">
+            <div class="left">Text</div>
+            <div class="center">Img.</div>
+        </div>
+        <div class="footer">Text</div>
+    </div>
+</body>
+</html>
