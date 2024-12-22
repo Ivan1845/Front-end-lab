@@ -1,0 +1,136 @@
+/* Загальні стилі */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Стилі для рядків таблиці */
+.row1 {
+    background-color: #338f8f;
+    color: #fff;
+}
+
+.row2 {
+    background-color: #f5f533;
+    color: #000;
+}
+
+/* Hover ефекти */
+.row1:hover {
+    background-color: #fff;
+    color: #338f8f;
+}
+
+.row2:hover {
+    background-color: #000;
+    color: #f5f533;
+}
+
+/* Вимкнення hover для 3-го і 4-го рядків */
+.no-hover:hover {
+    background-color: inherit; /* Фон не змінюється */
+    color: inherit;           /* Колір тексту не змінюється */
+}
+
+/* Фігура з квадратів */
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+/* Квадрати із заокругленими кутами */
+.image-box {
+    width: 100px;
+    height: 100px;
+    background-color: #338f8f; /* Змінюється для кожного кольору */
+    border-radius: 15%;
+    position: absolute;
+    border: 1px solid black;
+}
+
+/* Загальні стилі для квадратів */
+.image-box {
+    width: 100px; /* Фіксований розмір квадрата */
+    height: 100px;
+    position: absolute;
+    border-radius: 15px; /* Заокруглені краї */
+    transform-origin: center; /* Обертання від центру */
+}
+
+/* Загальні стилі для квадратів */
+.image-box {
+    width: 100px; /* Фіксований розмір квадрата */
+    height: 100px;
+    position: absolute;
+    border-radius: 15px; /* Заокруглені краї */
+    transform-origin: center; /* Обертання від центру */
+}
+
+/* Перша фігура */
+.image-box.blue {
+    background-color: #b0c4de; /* Світло-блакитний */
+    top: 26%;
+    left: 70%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.image-box.yellow {
+    background-color: #ffff00; /* Жовтий */
+    top: calc(50% + 50px); /* Зміщення вниз */
+    left: calc(50% - 20px); /* Зміщення вліво */
+    transform: translate(-50%, -50%) rotate(20deg);
+}
+
+.image-box.red {
+    background-color: #c71585; /* Малиновий */
+    top: calc(50% + 50px); /* Зміщення вниз */
+    left: calc(50% + 100px); /* Зміщення вправо */
+    transform: translate(-50%, -50%) rotate(70deg);
+}
+
+/* Друга фігура */
+.image-box.second.blue {
+    background-color: #b0c4de; /* Світло-блакитний */
+    top: 26%;
+    left: calc(70% + 500px); /* Зсув праворуч від першої фігури */
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.image-box.second.yellow {
+    background-color: #ffff00; /* Жовтий */
+    top: calc(50% + 50px); /* Зміщення вниз */
+    left: calc(70% + 439px); /* Зсув праворуч */
+    transform: translate(-50%, -50%) rotate(20deg);
+}
+
+.image-box.second.red {
+    background-color: #c71585; /* Малиновий */
+    top: calc(50% + 50px); /* Зміщення вниз */
+    left: calc(70% + 559px); /* Зсув праворуч */
+    transform: translate(-50%, -50%) rotate(70deg);
+}
+
+
+

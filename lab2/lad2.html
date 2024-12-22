@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна №2 - Таблиці та CSS</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td {
+            width: 80px;
+            height: 30px;
+            border: 1px solid black;
+            text-align: center;
+            vertical-align: middle;
+        }
+        tr:hover {
+            background-color: lightblue;
+        }
+        .no-hover:hover {
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Лабораторна робота №2</h1>
+
+    <h2>Таблиця</h2>
+    <table>
+        <tr class="row1">
+            <td rowspan="2">Самборський</td>
+            <td>Іван</td>
+            <td rowspan="2" colspan="2">Юрійович</td>
+        </tr>
+        <tr class="row2">
+            <td>ІО-21, Л.р. 2, Варіант 3</td>
+        </tr>
+        <tr class="no-hover">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="no-hover">
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+
+    <h2>Зображення</h2>
+    <div class="image-container">
+    <!-- Перша фігура -->
+    <div class="image-box blue"></div>
+    <div class="image-box yellow"></div>
+    <div class="image-box red"></div>
+
+    <!-- Друга фігура -->
+    <div class="image-box blue second"></div>
+    <div class="image-box yellow second"></div>
+    <div class="image-box red second"></div>
+</div>
+
+</body>
+</html>
