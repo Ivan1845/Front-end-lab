@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма з валідацією</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .form-container {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            border: 2px solid red;
+        }
+        .valid {
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="mainForm" onsubmit="return validateForm()">
+        <label for="pib">ПІБ:</label>
+        <input type="text" id="pib" name="pib" placeholder="ТТТТТТ Т.Т." required>
+
+        <label for="group">Група:</label>
+        <input type="text" id="group" name="group" placeholder="ТТ-ЧЧ" required>
+
+        <label for="phone">Телефон:</label>
+        <input type="text" id="phone" name="phone" placeholder="(ЧЧЧ)-ЧЧЧ-ЧЧ-ЧЧ" required>
+
+        <label for="faculty">Факультет:</label>
+        <input type="text" id="faculty" name="faculty" placeholder="ТТТТ" required>
+
+        <label for="address">Адреса:</label>
+        <input type="text" id="address" name="address" placeholder="м. ЧЧЧЧЧЧ" required>
+
+        <input type="submit" value="Надіслати">
+    </form>
+</div>
+
+<script>
+    function validateForm() {
+        let isValid = true;
+        const form = document.getElementById("mainForm");
+
+        // Скидаємо попередні стилі
+        Array.from(form.elements).forEach(input => {
+            if (input.type === "text") {
+                input.classList.remove("error");
+                input.classList.remove("valid");
+            }
+        });
+
+        // Регулярні вирази
+        const pibRegex = /^[А-ЯІЇЄҐ][а-яіїєґ']+\s[А-ЯІЇЄҐ]\.[А-ЯІЇЄҐ]\.$/; // ПІБ
+        const groupRegex = /^[А-ЯІЇЄҐ]{2}-\d{2}$/; // Група
+        const phoneRegex = /^\(\d{3}\)-\d{3}-\d{2}-\d{2}$/; // Телефон
+        const facultyRegex = /^[A-ZА-ЯІЇЄҐ]{4}$/; // Факультет
+        const addressRegex = /^м\. [А-ЯІЇЄҐа-яіїєґ]+$/; // Адреса
+
+        const validations = [
+            { field: "pib", regex: pibRegex },
+            { field: "group", regex: groupRegex },
+            { field: "phone", regex: phoneRegex },
+            { field: "faculty", regex: facultyRegex },
+            { field: "address", regex: addressRegex },
+        ];
+
+        // Виконання перевірки
+        validations.forEach(({ field, regex }) => {
+            const input = document.getElementById(field);
+            if (regex.test(input.value.trim())) {
+                input.classList.add("valid"); // Зелена рамка для правильного значення
+            } else {
+                input.classList.add("error"); // Червона рамка для помилки
+                isValid = false;
+            }
+        });
+
+        if (isValid) {
+            // Виводимо дані у вікні
+            const data = Array.from(form.elements)
+                .filter(input => input.type === "text")
+                .map(input => `${input.previousElementSibling.textContent} ${input.value}`)
+                .join("\n");
+            alert(`Введені дані:\n${data}`);
+        } else {
+            alert("Перевірте правильність заповнення полів.");
+        }
+
+        return false; // Зупинити відправку форми
+    }
+</script>
+
+</body>
+</html>

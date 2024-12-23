@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблиця 6x6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 60%;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        input[type="color"] {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <table id="table">
+    </table>
+
+    <input type="color" id="colorPicker" value="#000000" />
+
+    <script>
+        const table = document.getElementById("table");
+
+        // Створення таблиці 6x6
+        for (let row = 0; row < 6; row++) {
+            const tr = document.createElement("tr");
+            for (let col = 0; col < 6; col++) {
+                const td = document.createElement("td");
+                const cellNumber = row * 6 + col + 1;
+                td.textContent = cellNumber;
+
+                if (cellNumber === 3) {
+                    td.addEventListener("mouseover", changeColorRandom);
+                }
+
+                td.addEventListener("click", changeColorOnClick);
+                td.addEventListener("dblclick", changeDiagonalColor);
+                tr.appendChild(td);
+            }
+            table.appendChild(tr);
+        }
+
+        function changeColorRandom(event) {
+            const randomColor = getRandomColor();
+            event.target.style.backgroundColor = randomColor;
+        }
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeColorOnClick(event) {
+            const color = document.getElementById("colorPicker").value;
+            event.target.style.backgroundColor = color;
+        }
+
+        function changeDiagonalColor() {
+            const cells = table.getElementsByTagName("td");
+            const diagonalCells = [];
+            for (let i = 0; i < 6; i++) {
+                diagonalCells.push(cells[i * 6 + i]);
+            }
+
+            diagonalCells.forEach(cell => {
+                const color = document.getElementById("colorPicker").value;
+                cell.style.backgroundColor = color;
+            });
+        }
+    </script>
+
+</body>
+</html>
