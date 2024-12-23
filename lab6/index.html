@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №6, Варіант 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .card {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .user-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 250px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .user-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .user-card p {
+            margin: 5px 0;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Лабораторна робота №6, Варіант 3</h1>
+        <button class="btn" onclick="fetchUsers()">Показати інформацію</button>
+        <div id="users" class="card"></div>
+    </div>
+
+    <script>
+        function fetchUsers() {
+            fetch('https://randomuser.me/api/?results=5')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayUsers(data.results);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+
+        function displayUsers(users) {
+            const usersContainer = document.getElementById('users');
+            usersContainer.innerHTML = '';
+
+            users.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.classList.add('user-card');
+
+                userCard.innerHTML = `
+                    <img src="${user.picture.large}" alt="User Picture">
+                    <p><strong>City:</strong> ${user.location.city}</p>
+                    <p><strong>Country:</strong> ${user.location.country}</p>
+                    <p><strong>Postcode:</strong> ${user.location.postcode}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                `;
+
+                usersContainer.appendChild(userCard);
+            });
+        }
+    </script>
+</body>
+</html>
